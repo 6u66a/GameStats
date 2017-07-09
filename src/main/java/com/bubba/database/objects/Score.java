@@ -1,11 +1,8 @@
 package com.bubba.database.objects;
 
-import lombok.Data;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import lombok.Data;
 
 /**
  * Created by haller on 28.06.2017.
@@ -17,18 +14,18 @@ public class Score {
     @Id
     @GeneratedValue
     Long id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Player player;
-    @ManyToOne
-    private Fraction fraction;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Faction fraction;
+    @ManyToOne(cascade = CascadeType.ALL)
     private Session session;
     private int score;
 
     private Score() {
     }
 
-    public Score(Player player, Fraction fraction, Session session, int score) {
+    public Score(Player player, Faction fraction, Session session, int score) {
         this.session = session;
         this.player = player;
         this.fraction = fraction;

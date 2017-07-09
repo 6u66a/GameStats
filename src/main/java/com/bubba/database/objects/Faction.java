@@ -11,24 +11,28 @@ import java.util.Set;
  */
 @Data
 @Entity
-public class Fraction {
+public class Faction {
 
     @Id
     @GeneratedValue
-    Long id;
+    private Long id;
     private String name;
     private String description;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Game game;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<Score> scores;
 
-    private Fraction() {
+    private Faction() {
     }
 
-    public Fraction(String name, String description, Game game) {
+    public Faction(String name, String description, Game game) {
         this.name = name;
         this.description = description;
         this.game = game;
+    }
+
+    public Long getId(){
+        return this.id;
     }
 }

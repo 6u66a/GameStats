@@ -17,21 +17,16 @@ public class Game {
     @Id @GeneratedValue Long id;
     protected String name;
     protected String description;
-    @OneToMany
-    protected List<Fraction> fractions;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    protected List<Faction> factions;
+    @OneToMany(cascade = CascadeType.ALL)
     protected Set<Session> sessions;
 
     private Game() {}
 
-    public Game(String name, String description, List<Fraction> fractions) {
+    public Game(String name, String description, List<Faction> factions) {
         this.name=name;
         this.description=description;
-        this.fractions=fractions;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "fraction")
-    public List<Fraction> getFractions(){
-        return this.fractions;
+        this.factions=factions;
     }
 }

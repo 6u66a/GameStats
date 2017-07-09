@@ -15,9 +15,9 @@ public class Session {
     @Id @GeneratedValue Long id;
     private String notes;
     private int duration;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Game game;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<Score> scores;
 
     private Session(){}
